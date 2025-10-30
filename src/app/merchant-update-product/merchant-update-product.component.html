@@ -1,0 +1,105 @@
+<div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md h-screen">
+      <div class="p-6">
+        <a routerLink="/merchant" class="text-2xl font-bold text-gray-700">Merchant Dashboard</a>
+      </div>
+      <app-merchant-navbar></app-merchant-navbar>
+    </aside>
+  
+    <div class="p-6">
+      <h2 class="text-2xl font-bold mb-4 text-gray-700">Update Product</h2>
+  
+      <div *ngIf="errorMessage" class="mb-4 text-red-600">
+        {{ errorMessage }}
+      </div>
+      <div *ngIf="successMessage" class="mb-4 text-green-600">
+        {{ successMessage }}
+      </div>
+  
+      <!-- Form to update product -->
+      <form (ngSubmit)="updateProduct()">
+        <div>
+          <label for="productId" class="block text-sm font-medium text-gray-700">Product ID:</label>
+          <input
+            id="productId"
+            type="number"
+            [(ngModel)]="productId"
+            name="productId"
+            class="w-full border border-gray-300 rounded-md p-3 mt-2 focus:ring-2 focus:ring-blue-400"
+            placeholder="Enter Product ID"
+            required
+          />
+        </div>
+  
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Product Name:</label>
+          <input
+            id="name"
+            [(ngModel)]="product.name"
+            name="name"
+            class="w-full border border-gray-300 rounded-md p-3 mt-2 focus:ring-2 focus:ring-blue-400"
+            placeholder="Enter Product Name"
+            required
+          />
+        </div>
+  
+        <div>
+          <label for="price" class="block text-sm font-medium text-gray-700">Price:</label>
+          <input
+            id="price"
+            [(ngModel)]="product.price"
+            name="price"
+            type="number"
+            class="w-full border border-gray-300 rounded-md p-3 mt-2 focus:ring-2 focus:ring-blue-400"
+            placeholder="Enter Product Price"
+            required
+          />
+        </div>
+  
+        <div>
+          <label for="quantity" class="block text-sm font-medium text-gray-700">Stock Quantity:</label>
+          <input
+            id="quantity"
+            [(ngModel)]="product.stockQuantity"
+            name="quantity"
+            type="number"
+            class="w-full border border-gray-300 rounded-md p-3 mt-2 focus:ring-2 focus:ring-blue-400"
+            placeholder="Enter Stock Quantity"
+            required
+          />
+        </div>
+  
+        <div>
+          <label for="category" class="block text-sm font-medium text-gray-700">Category ID:</label>
+          <input
+            id="category"
+            [(ngModel)]="product.categoryId"
+            name="category"
+            type="number"
+            class="w-full border border-gray-300 rounded-md p-3 mt-2 focus:ring-2 focus:ring-blue-400"
+            placeholder="Enter Category ID"
+            required
+          />
+        </div>
+  
+        <div>
+          <label for="image" class="block text-sm font-medium text-gray-700">Upload Image:</label>
+          <input
+            id="image"
+            type="file"
+            (change)="onFileSelected($event)"
+            class="w-full border border-gray-300 rounded-md p-3 mt-2 focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+  
+        <button
+          type="submit"
+          class="bg-green-600 text-white px-4 py-2 mt-4 rounded hover:bg-green-700 focus:outline-none"
+        >
+          Update Product
+        </button>
+      </form>
+    </div>
+  </div>
+  

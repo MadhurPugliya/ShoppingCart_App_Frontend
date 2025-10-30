@@ -1,0 +1,36 @@
+<section class="bg-gray-50 min-h-screen">
+    <!-- Sidebar -->
+    <div class="flex">
+      <aside class="w-64 bg-white shadow-md h-screen">
+        <div class="p-6">
+          <a routerLink="/merchant" class="text-2xl font-bold text-gray-700">Merchant Dashboard</a>
+        </div>
+        <app-merchant-navbar></app-merchant-navbar>
+      </aside>
+      <div class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-2xl">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Order Summary</h2>
+        
+        <div class="grid grid-cols-3 gap-6">
+          <!-- Total Orders -->
+          <div class="p-4 bg-blue-100 border-l-4 border-blue-500 rounded-lg shadow">
+            <p class="text-lg font-semibold text-blue-700">Total Orders</p>
+            <p class="text-2xl font-bold text-blue-800">{{ orderSummary?.TotalOrders }}</p>
+          </div>
+      
+          <!-- Pending Orders -->
+          <div class="p-4 bg-yellow-100 border-l-4 border-yellow-500 rounded-lg shadow">
+            <p class="text-lg font-semibold text-yellow-700">Pending Orders</p>
+            <p class="text-2xl font-bold text-yellow-800">{{ orderSummary?.PendingOrders }}</p>
+          </div>
+      
+          <!-- Successful Orders -->
+          <div class="p-4 bg-green-100 border-l-4 border-green-500 rounded-lg shadow">
+            <p class="text-lg font-semibold text-green-700">Successful Orders</p>
+            <p class="text-2xl font-bold text-green-800">{{ orderSummary?.SuccessfulOrders }}</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+  

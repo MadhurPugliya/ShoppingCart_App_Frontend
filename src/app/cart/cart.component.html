@@ -1,0 +1,71 @@
+<div class="container mx-auto mt-12 p-8 max-w-4xl">
+  <div class="bg-gradient-to-r from-white to-gray-100 rounded-2xl shadow-xl p-8">
+    <h1 class="text-4xl font-extrabold text-gray-800 mb-8 text-center">
+      Your Shopping Cart 🛒
+    </h1>
+
+    <!-- Cart Items List -->
+    <div *ngFor="let item of cartItems.cartItems" 
+         class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 mb-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-all">
+      
+      <!-- Product Image -->
+      <div class="w-30 h-48 object-contain p-4">
+        <img 
+          [src]="'http://localhost:5027' + item.product.imageUrl || 'https://via.placeholder.com/150'" 
+          [alt]="item.productName" 
+          class="rounded-lg w-full h-40 object-cover" />
+      </div>
+
+      <!-- Product Details -->
+      <div class="w-full md:w-1/2 text-center md:text-left">
+        <h2 class="text-lg font-semibold text-gray-800">{{ item.productName }}</h2>
+        <p class="text-sm text-gray-500 mt-1">₹{{ item.price }}</p>
+        <div class="flex items-center justify-center md:justify-start mt-4 gap-2">
+          <label for="quantity" class="text-sm text-gray-600">Qty:</label>
+          <input
+            id="quantity"
+            [(ngModel)]="item.quantity"
+            (input)="updateCartItem(item)"
+            class="w-16 h-10 rounded-md border-gray-300 text-center focus:ring focus:ring-blue-300 focus:outline-none transition"
+            type="number"
+            min="1"
+          />
+        </div>
+      </div>
+
+      <!-- Total Price and Actions -->
+      <div class="w-full md:w-1/4 text-center md:text-right">
+        <p class="text-lg font-semibold text-gray-800">₹{{ item.price * item.quantity }}</p>
+        <button
+          (click)="removeItem(item)"
+          class="mt-4 bg-red-500 text-white px-6 py-2 rounded-lg text-sm font-medium shadow hover:bg-red-600 transition-all"
+        >
+          Remove
+        </button>
+      </div>
+    </div>
+
+    <!-- Total Cart Price Section -->
+    <div class="flex flex-col md:flex-row items-center justify-between mt-6 p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">
+        Total: ₹{{ totalCost }}
+      </h2>
+      <button
+        class="px-6 py-3 bg-blue-600 text-white rounded-xl text-lg font-semibold shadow-md hover:bg-blue-700 transition-all"
+        (click)="proceedToCheckout()"
+      >
+        Proceed to Checkout
+      </button>
+    </div>
+
+    <!-- Continue Shopping Link -->
+    <div class="text-center mt-8">
+      <a
+        routerLink="/home"
+        class="text-blue-600 font-medium hover:text-blue-700 transition"
+      >
+        ⬅️ Continue Shopping
+      </a>
+    </div>
+  </div>
+</div>

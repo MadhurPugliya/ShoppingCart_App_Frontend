@@ -1,0 +1,99 @@
+<section class="min-h-screen flex items-center justify-center bg-gray-100">
+  <!-- Container -->
+  <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-6 sm:p-8">
+    <!-- Logo -->
+    <div class="text-center mb-6">
+      <!-- <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="Logo" class="w-12 h-12 mx-auto"> -->
+      <h1 class="text-2xl font-bold text-gray-700 mt-2">Create an Account</h1>
+      <p class="text-sm text-gray-500">Sign up to access your account</p>
+    </div> 
+     
+    <!-- Form -->
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="pace-y-4">
+      <!-- Username -->
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          formControlName="username"
+          placeholder="Enter your username"
+          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500"
+          [class.is-invalid]="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched"
+        />
+        <small *ngIf="registrationForm.get('username')?.invalid && registrationForm.get('username')?.touched" class="text-red-500">Username is required (min 3 characters).</small>
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email"
+          placeholder="Enter your email"
+          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500"
+          [class.is-invalid]="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched"
+        />
+        <small *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" class="text-red-500">Please enter a valid email address.</small>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          formControlName="password"
+          placeholder="Enter a secure password"
+          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500"
+          [class.is-invalid]="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched"
+        />
+        <small *ngIf="registrationForm.get('password')?.invalid && registrationForm.get('password')?.touched" class="text-red-500">Password must be at least 6 characters long.</small>
+      </div>
+
+      <!-- Role -->
+      <div>
+        <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+        <select 
+          id="role" 
+          formControlName="role"
+          class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-900 focus:ring-blue-500 focus:border-blue-500"
+        >
+          <option value="" disabled>Select your role</option>
+          <option value="Customer">Customer</option>
+          <option value="Merchant">Merchant</option>
+        </select>
+        <small *ngIf="registrationForm.get('role')?.invalid && registrationForm.get('role')?.touched" class="text-red-500">Please select a role.</small>
+      </div>
+
+      <!-- Terms -->
+      <div class="flex items-start">
+        <div class="flex items-center h-5">
+          <input 
+            id="terms" 
+            type="checkbox" 
+            formControlName="terms"
+            class="w-4 h-4 border border-gray-300 rounded focus:ring-blue-500 focus:ring-2"
+          />
+        </div>
+        <label for="terms" class="ml-2 text-sm text-gray-500">I agree to the <a class="text-blue-600 hover:underline">terms and conditions</a>.</label>
+      </div>
+      <small *ngIf="registrationForm.get('terms')?.invalid && registrationForm.get('terms')?.touched" class="text-red-500">You must accept the terms and conditions.</small>
+
+      <!-- Submit Button -->
+      <button 
+        type="submit" 
+        [disabled]="registrationForm.invalid"
+        class="w-full px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-300 focus:outline-none transition"
+      >
+        Sign Up
+      </button>
+    </form>
+
+    <!-- Already Have an Account -->
+    <p class="text-sm text-gray-500 mt-4 text-center">
+      Already have an account? <a routerLink="/login" class="text-blue-600 hover:underline">Log in</a>
+    </p>
+  </div>
+</section>

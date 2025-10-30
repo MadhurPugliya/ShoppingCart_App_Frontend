@@ -1,0 +1,110 @@
+<nav class="bg-gradient-to-r from-pink-600 to-indigo-600 shadow-lg">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between py-4">
+      <!-- Logo -->
+      <a routerLink="home" class="flex items-center space-x-2">
+        <!-- <img 
+          src="https://flowbite.com/docs/images/logo.svg"
+          class="h-10"
+          alt="Logo"
+       /> -->
+        <span class="text-2xl font-bold text-white">EShopCart</span>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="hidden md:flex flex-1 mx-6 relative">
+        <input type="text" [(ngModel)]="searchQuery" 
+          placeholder="Search for anything..."
+          class="w-full px-4 py-2 text-gray-900 rounded-l-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <button
+          (click)="onSearch()"
+          class="px-6 py-2 bg-white text-blue-600 font-medium rounded-r-full hover:bg-blue-100 focus:ring-2 focus:ring-white"
+        >
+          Search
+        </button>
+      </div>
+
+      <!-- Nav Links -->
+      <div class="hidden md:flex items-center space-x-6">
+        <a routerLink="home" class="text-white hover:text-indigo-300 font-medium">Home</a>
+
+        <!-- Profile Dropdown -->
+        <div class="relative group">
+          <button class="text-white font-medium hover:text-indigo-300">
+            <span>Profile</span>
+          </button>
+          <!-- Dropdown Menu -->
+          <div class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-md z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+            <ul class="py-2">
+              <!-- If user is not logged in -->
+              <!-- <li *ngIf="!authService.isLoggedIn()">
+                <a routerLink="profile" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Profile</a>
+              </li> -->
+              <li *ngIf="!authService.isLoggedIn()">
+                <a routerLink="sign-up" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Sign up</a>
+              </li>
+
+              <!-- If user is logged in as a customer -->
+              <li *ngIf="authService.isLoggedIn() && authService.getRole() === 'Customer'">
+                <a routerLink="cart" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Cart</a>
+              </li>
+              <li *ngIf="authService.isLoggedIn() && authService.getRole() === 'Customer'">
+                <a routerLink="order" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Orders</a>
+              </li>
+              <li *ngIf="authService.isLoggedIn() && authService.getRole() === 'Customer'">
+                <a routerLink="profile" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">User Profile</a>
+              </li>
+              <li *ngIf="authService.isLoggedIn() && authService.getRole() === 'Customer'">
+                <a routerLink="wallet" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Wallet</a>
+              </li>
+              <!-- <li *ngIf="authService.isLoggedIn() && authService.getRole() === 'Customer'">
+                <a routerLink="payment" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Payment</a>
+              </li> -->
+
+              <!-- If user is logged in as a merchant -->
+              <li *ngIf="authService.isLoggedIn() && authService.getRole() === 'Merchant'">
+                <a routerLink="/profile" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">User Profile</a>
+              </li>
+              <li *ngIf="authService.isLoggedIn() && authService.getRole() === 'Merchant'">
+                <a routerLink="/merchant" class="block px-4 py-2 text-gray-800 hover:bg-indigo-100">Merchant</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        type="button"
+        class="inline-flex items-center text-white md:hidden focus:outline-none"
+        data-collapse-toggle="navbar-dropdown"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="md:hidden" id="navbar-dropdown">
+      <ul class="flex flex-col space-y-2 bg-white p-4 rounded-lg shadow-md">
+        <li>
+          <a routerLink="home" class="text-gray-800 hover:text-blue-600 font-medium">Home</a>
+        </li>
+        <!-- Add other mobile links as per requirement -->
+      </ul>
+    </div>
+  </div>
+</nav>
